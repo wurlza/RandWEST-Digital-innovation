@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | RandWest Digital Skills Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mediaqueries.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #f59e0b;
+            --secondary-dark: #d97706;
+            --accent: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #f1f5f9;
+            --border-radius: 12px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+     .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo:hover .logo-image {
+            transform: rotate(5deg) scale(1.05);
+        }
+        .logo-text h1 {
+            font-size: 1.6rem;
+            line-height: 1.2;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--accent), #34d399);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .mobile-menu:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary);
+            padding-left: 10px;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .close-menu:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Login Section */
+        .login-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 60px;
+        }
+
+        .login-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .login-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .login-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .login-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .login-features {
+            list-style: none;
+        }
+
+        .login-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-features i {
+            color: var(--secondary);
+        }
+
+        .login-form-container {
+            padding: 60px 40px;
+        }
+
+        .login-form-container h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .login-form-container p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gray-light);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: var(--gray);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            background: white;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .register-link {
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 140px 0 80px;
+            background: var(--light);
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+
+        .profile-sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .profile-menu {
+            list-style: none;
+        }
+
+        .profile-menu li {
+            margin-bottom: 10px;
+        }
+
+        .profile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .profile-menu a:hover, .profile-menu a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profile-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-tab {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .profile-tab.active {
+            display: block;
+        }
+
+        .tab-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .tab-header h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .tab-header p {
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 15px;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .card-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .activity-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* Form Sections */
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Orders Table */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .orders-table th, .orders-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .orders-table th {
+            font-weight: 600;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-processing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            padding: 80px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-hero {
+                display: none;
+            }
+            
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                position: static;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .login-section {
+                padding: 100px 0 40px;
+            }
+            
+            .login-form-container {
+                padding: 40px 25px;
+            }
+            
+            .profile-section {
+                padding: 120px 0 60px;
+            }
+            
+            .profile-content {
+                padding: 30px 25px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+            
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .login-form-container h2 {
+                font-size: 1.7rem;
+            }
+            
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .orders-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-image">
+                    <img src="assets/1000656890-removebg-preview.webp" alt="RandWest Digital Skills Academy Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>RANDWEST</h1>
+                    <span>DIGITAL SKILLS ACADEMY</span>
+                </div>
+            </div>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="index.html#accreditation">Get Accredited</a></li>
+                    <li><a href="profile.html" class="active">My Profile</a></li>
+                    <li><a href="index.html#knowledge">Knowledge Hub</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="profile.html" class="btn btn-outline">My Profile</a>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="index.html#accreditation">Get Accredited</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="index.html#knowledge">Knowledge Hub</a></li>
+            <li><a href="aboutUs.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-actions" style="margin-top: auto; padding-top: 20px;">
+            <a href="profile.html" class="btn" style="width: 100%; margin-bottom: 15px;">My Profile</a>
+        </div>
+    </div>
+
+    <!-- Login Section (shown when not logged in) -->
+    <section class="login-section" id="loginSection">
+        <div class="container">
+            <div class="login-container" id="loginContainer">
+                <div class="login-hero">
+                    <h2>Welcome Back!</h2>
+                    <p>Sign in to access your training materials, track your accreditation progress, and manage your account.</p>
+                    <ul class="login-features">
+                        <li><i class="fas fa-check-circle"></i> Access all your purchased materials</li>
+                        <li><i class="fas fa-check-circle"></i> Track accreditation progress</li>
+                        <li><i class="fas fa-check-circle"></i> Download updates and resources</li>
+                        <li><i class="fas fa-check-circle"></i> Get personalized support</li>
+                    </ul>
+                </div>
+                <div class="login-form-container">
+                    <h2>Sign In</h2>
+                    <p>Enter your credentials to access your account</p>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success login-btn">Sign In</button>
+                    </form>
+                    
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button class="social-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button class="social-btn">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </button>
+                    </div>
+                    
+                    <div class="register-link">
+                        Don't have an account? <a href="#" id="showRegister">Sign up here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section (shown when logged in) -->
+    <section class="profile-section" id="profileSection" style="display: none;">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-sidebar">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-name">Sarah Johnson</div>
+                        <div class="profile-role">Training Manager</div>
+                    </div>
+                    
+                    <ul class="profile-menu">
+                        <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#" data-tab="profile"><i class="fas fa-user-edit"></i> Edit Profile</a></li>
+                        <li><a href="#" data-tab="orders"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                        <li><a href="#" data-tab="materials"><i class="fas fa-book"></i> Training Materials</a></li>
+                        <li><a href="#" data-tab="accreditation"><i class="fas fa-award"></i> Accreditation</a></li>
+                        <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+                
+                <div class="profile-content">
+                    <!-- Dashboard Tab -->
+                    <div class="profile-tab active" id="dashboard-tab">
+                        <div class="tab-header">
+                            <h2>Dashboard</h2>
+                            <p>Welcome back, Sarah! Here's your training overview.</p>
+                        </div>
+                        
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="card-value">12</div>
+                                <div class="card-label">Training Materials</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="card-value">3</div>
+                                <div class="card-label">Active Courses</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="card-value">85%</div>
+                                <div class="card-label">Accreditation Progress</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="card-value">24</div>
+                                <div class="card-label">Resources Downloaded</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-header">
+                            <h2>Recent Activity</h2>
+                        </div>
+                        
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Downloaded OHS Act Manual</div>
+                                    <div class="activity-desc">You downloaded the updated OHS Act Colour Coded manual</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Message from Support</div>
+                                    <div class="activity-desc">Your accreditation query has been responded to</div>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Purchase</div>
+                                    <div class="activity-desc">You purchased the ESS Compliance Ensurer package</div>
+                                    <div class="activity-time">3 days ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Material Updated</div>
+                                    <div class="activity-desc">Quality Management System manual has been updated to v2.1</div>
+                                    <div class="activity-time">1 week ago</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Profile Tab -->
+                    <div class="profile-tab" id="profile-tab">
+                        <div class="tab-header">
+                            <h2>Edit Profile</h2>
+                            <p>Update your personal information and preferences</p>
+                        </div>
+                        
+                        <form id="profileForm">
+                            <div class="form-section">
+                                <h3>Personal Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" class="form-control" value="Sarah">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" class="form-control" value="Johnson">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="emailProfile">Email Address</label>
+                                    <input type="email" id="emailProfile" class="form-control" value="sarah.johnson@example.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" class="form-control" value="+27 11 123 4567">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="organization">Organization</label>
+                                    <input type="text" id="organization" class="form-control" value="Skills Development Institute">
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Change Password</h3>
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Orders Tab -->
+                    <div class="profile-tab" id="orders-tab">
+                        <div class="tab-header">
+                            <h2>My Orders</h2>
+                            <p>View your purchase history and order details</p>
+                        </div>
+                        
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#RW-4892</td>
+                                    <td>15 Nov 2023</td>
+                                    <td>ESS Compliance Ensurer</td>
+                                    <td>R1,450</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                    <td><a href="#" class="btn btn-outline" style="padding: 8px 15px;">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#RW-4876</td>
+                                    <td>10 Nov 2023</td>
+                                    <td>Quality Management System</td>
+                                    <td>R3,500</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                    <td><a href="#" class="btn btn-outline" style="padding: 8px 15px;">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#RW-4851</td>
+                                    <td>05 Nov 2023</td>
+                                    <td>OHS Act Colour Coded</td>
+                                    <td>R850</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                    <td><a href="#" class="btn btn-outline" style="padding: 8px 15px;">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#RW-4823</td>
+                                    <td>28 Oct 2023</td>
+                                    <td>Accreditation Toolkit</td>
+                                    <td>R2,200</td>
+                                    <td><span class="status-badge status-processing">Processing</span></td>
+                                    <td><a href="#" class="btn btn-outline" style="padding: 8px 15px;">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Additional tabs would be implemented similarly -->
+                    <div class="profile-tab" id="materials-tab">
+                        <div class="tab-header">
+                            <h2>Training Materials</h2>
+                            <p>Access all your purchased training materials and resources</p>
+                        </div>
+                        <p>Your training materials will be displayed here.</p>
+                    </div>
+                    
+                    <div class="profile-tab" id="accreditation-tab">
+                        <div class="tab-header">
+                            <h2>Accreditation Progress</h2>
+                            <p>Track your QCTO accreditation journey</p>
+                        </div>
+                        <p>Your accreditation status and progress will be displayed here.</p>
+                    </div>
+                    
+                    <div class="profile-tab" id="settings-tab">
+                        <div class="tab-header">
+                            <h2>Account Settings</h2>
+                            <p>Manage your notification preferences and account settings</p>
+                        </div>
+                        <p>Your account settings will be displayed here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>RANDWEST DIGITAL SKILLS ACADEMY</h3>
+                    <p>Providing high-quality learning materials, QCTO-aligned QMS, and expert accreditation support to training providers across South Africa.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="index.html#accreditation">Get Accredited</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="index.html#knowledge">Knowledge Hub</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#ess">ESS Programs</a></li>
+                        <li><a href="#qms">Quality Management System</a></li>
+                        <li><a href="#ohs">OHS Training Materials</a></li>
+                        <li><a href="#accreditation">Accreditation Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa</li>
+                        <li><i class="fas fa-phone"></i> +27 11 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@randwestacademy.co.za</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 RandWest Digital Skills Academy. All Rights Reserved. | EST. 2025 Digital Innovation for Skills Development</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Login/Profile Toggle (Demo purposes - in real app this would be handled by backend)
+        const loginSection = document.getElementById('loginSection');
+        const profileSection = document.getElementById('profileSection');
+        const loginForm = document.getElementById('loginForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Check if user is logged in (for demo, we'll use sessionStorage)
+        const isLoggedIn = sessionStorage.getItem('randwestLoggedIn');
+        
+        if (isLoggedIn) {
+            loginSection.style.display = 'none';
+            profileSection.style.display = 'block';
+        } else {
+            loginSection.style.display = 'block';
+            profileSection.style.display = 'none';
+        }
+        
+        // Login form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real application, you would validate credentials with a server
+            // For demo purposes, we'll just simulate a successful login
+            sessionStorage.setItem('randwestLoggedIn', 'true');
+            loginSection.style.display = 'none';
+            profileSection.style.display = 'block';
+        });
+        
+        // Logout functionality
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('randwestLoggedIn');
+            loginSection.style.display = 'block';
+            profileSection.style.display = 'none';
+        });
+        
+        // Profile tab navigation
+        const profileMenuLinks = document.querySelectorAll('.profile-menu a[data-tab]');
+        
+        profileMenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                profileMenuLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Hide all tabs
+                document.querySelectorAll('.profile-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Show selected tab
+                const tabId = link.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Profile form submission
+        const profileForm = document.getElementById('profileForm');
+        
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Profile updated successfully!');
+            // In a real application, you would send this data to a server
+        });
+        
+        // Show register form (demo purposes)
+        const showRegister = document.getElementById('showRegister');
+        
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Registration form would be displayed here. For this demo, use any credentials to login.');
+        });
+        
+        // Animation for login container
+        const loginContainer = document.getElementById('loginContainer');
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loginContainer.classList.add('visible');
+            }, 300);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileNav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="shared.js"></script>
+</body>
+</html>
