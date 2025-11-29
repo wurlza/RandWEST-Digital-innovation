@@ -32,36 +32,6 @@
                 header.classList.remove('scrolled');
             }
         });
-
-        // Testimonials carousel
-        const testimonialsContainer = document.getElementById('testimonialsContainer');
-        const dots = document.querySelectorAll('.carousel-dot');
-        let currentSlide = 0;
-        
-        function showSlide(index) {
-            testimonialsContainer.style.transform = `translateX(-${index * 100}%)`;
-            
-            // Update dots
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            
-            currentSlide = index;
-        }
-        
-        // Add click events to dots
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
-                showSlide(index);
-            });
-        });
-        
-        // Auto-advance carousel
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % dots.length;
-            showSlide(currentSlide);
-        }, 6000);
-        
         // Product filtering
         const filterButtons = document.querySelectorAll('.filter-btn');
         const productCards = document.querySelectorAll('.product-card');
